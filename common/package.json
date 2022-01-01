@@ -1,6 +1,7 @@
 {
   "name": "@singhpostitapp/common",
-  "version": "1.0.0",
+  "version": "1.0.4",
+  "description": "",
   "main": "./build/index.js",
   "types": "./build/index.d.ts",
   "files": [
@@ -22,6 +23,5 @@
   "devDependencies": {
     "del-cli": "^4.0.1",
     "typescript": "^4.5.4"
-  },
-  "description": ""
+  }
 }
