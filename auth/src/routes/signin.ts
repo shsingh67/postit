@@ -1,3 +1,4 @@
+import { BadRequestError } from "@singhpostitapp/common";
 import express, { Request, Response } from "express";
 import { body } from "express-validator";
 import jwt from "jsonwebtoken";
@@ -22,7 +23,7 @@ router.post(
       !existingUser ||
       !(await Password.compare(existingUser.password, password))
     ) {
-      throw new Error("Something ");
+      throw new BadRequestError("Invalid Credentials");
     }
 
     //Generate JWT
@@ -41,3 +42,5 @@ router.post(
     res.status(200).send(existingUser);
   }
 );
+
+export { router as signinRouter };
