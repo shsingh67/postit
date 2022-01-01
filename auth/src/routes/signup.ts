@@ -2,6 +2,7 @@ import express, { Request, Response } from "express";
 import { body } from "express-validator";
 import { User } from "../models/user";
 import jwt from "jsonwebtoken";
+import { BadRequestError } from "@singhpostitapp/common";
 
 const router = express.Router();
 
@@ -22,7 +23,7 @@ router.post(
     const exisitingUser = await User.findOne({ email });
 
     if (exisitingUser) {
-      // throw error
+      throw new BadRequestError("This email is already in use.");
     }
 
     //create the user
@@ -40,7 +41,7 @@ router.post(
 
     req.session = { jwt: userJwt };
     //send 201 res
-    res.send(201).send(user);
+    res.status(201).send(user);
   }
 );
 
