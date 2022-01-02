@@ -1,4 +1,4 @@
-import { BadRequestError } from "@singhpostitapp/common";
+import { BadRequestError, validateRequest } from "@singhpostitapp/common";
 import express, { Request, Response } from "express";
 import { body } from "express-validator";
 import jwt from "jsonwebtoken";
@@ -8,11 +8,12 @@ import { Password } from "../services/password";
 const router = express.Router();
 
 router.post(
-  "api/users/signin",
+  "/api/users/signin",
   [
     body("email").isEmail().withMessage("Email must be valid"),
     body("password").trim().notEmpty().withMessage("You must enter a password"),
   ],
+  validateRequest,
   async (req: Request, res: Response) => {
     //check if user exists and compare password
     const { email, password } = req.body;
@@ -29,7 +30,7 @@ router.post(
     //Generate JWT
     const userJwt = jwt.sign(
       {
-        id: existingUser?.id,
+        id: existingUser.id,
         email: existingUser.email,
       },
 
