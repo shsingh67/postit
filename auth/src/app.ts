@@ -9,8 +9,11 @@ import { signoutRouter } from "./routes/signout";
 import { errorHandler, NotFoundError } from "@singhpostitapp/common";
 
 const app = express();
+//Since we are behind ingress-nginx controller
 app.set("trust proxy", true);
 app.use(json());
+//No need to encrypt the cookie since we are using JWT's and only use cookies over a https connection
+//(no need to secure cookies in test env)
 app.use(
   cookieSession({
     signed: false,
@@ -20,7 +23,7 @@ app.use(
 
 app.use(signupRouter);
 app.use(signinRouter);
-app.use(signupRouter);
+app.use(signoutRouter);
 
 app.all("*", async (req, res) => {
   throw new NotFoundError();
