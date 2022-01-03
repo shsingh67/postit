@@ -1,19 +1,30 @@
+import { requireAuth, validateRequest } from "@singhpostitapp/common";
 import express, { Request, Response } from "express";
 import { Post } from "../models/post";
+import { body } from "express-validator";
 
 const router = express.Router();
 
-//post will have
-// userId, postId, comment[], likes, timestamp,
+router.post(
+  "/api/posts",
+  requireAuth,
+  [
+    body("caption")
+      .not()
+      .isEmpty()
+      .withMessage("Please provide a caption for your post."),
+    body("imgUrl").optional().not().isEmpty().isURL(),
+  ],
+  validateRequest,
+  async (req: Request, res: Response) => {
+    const { caption, imgUrl } = req.body;
 
-//TODO: add req validtor
-router.post("api/posts", async (req: Request, res: Response) => {
-  //Build the post and save it to the database
-  const post = Post.build({
-    userId: req.currentUser!.id,
-  });
+    const post = Post.build({ userId: req.currentUser!.id, caption, imgUrl });
 
-  res.status(201).send(post);
-});
+    await post.save();
+
+    res.status(201).send(post);
+  }
+);
 
 export { router as newPostRouter };
