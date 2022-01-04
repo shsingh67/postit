@@ -22,7 +22,6 @@ export const currentUser = (
   if (!req.session?.jwt) {
     return next();
   }
-
   try {
     const payload = jwt.verify(
       req.session.jwt,
@@ -32,4 +31,6 @@ export const currentUser = (
   } catch (err) {
     console.error(err);
   }
+
+  next();
 };
