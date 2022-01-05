@@ -10,7 +10,7 @@ import {
 } from "@singhpostitapp/common";
 import { newPostRouter } from "./routes/new";
 import { updatePostRouter } from "./routes/update";
-import { indexPostRouter } from "./routes";
+import { indexPostRouter } from "./routes/index";
 
 const app = express();
 //Since we are behind ingress-nginx controller
