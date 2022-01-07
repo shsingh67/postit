@@ -4,17 +4,17 @@ import { CommentDoc } from "./comment";
 interface PostAttrs {
   userId: string;
   caption: string;
-  imgUrl?: string | undefined;
-  comments?: CommentDoc[] | undefined;
-  likes?: number | undefined;
+  imgUrl?: string;
+  comments?: CommentDoc[];
+  likes?: number;
 }
 
 interface PostDoc extends mongoose.Document {
   userId: string;
   caption: string;
-  imgUrl?: string | undefined;
-  comments?: CommentDoc[] | undefined;
-  likes?: number | undefined;
+  imgUrl: string;
+  comments: CommentDoc[];
+  likes: number;
 }
 
 interface PostModel extends mongoose.Model<PostDoc> {
@@ -29,21 +29,20 @@ const postSchema = new mongoose.Schema(
     },
     caption: {
       type: String,
-      require: true,
+      required: true,
     },
     imgUrl: {
       type: String,
       required: false,
     },
-    comments: [
-      {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: "Comment",
-      },
-    ],
+    comments: {
+      type: [{ type: mongoose.Schema.Types.ObjectId, ref: "Comment" }],
+      default: undefined,
+    },
     likes: {
       type: Number,
-      require: false,
+      required: false,
+      default: 0,
     },
   },
   {
