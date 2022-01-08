@@ -1,7 +1,8 @@
 import { requireAuth, validateRequest } from "@singhpostitapp/common";
 import express, { Request, Response } from "express";
-import { Post } from "../models/post";
 import { body } from "express-validator";
+
+import { Post } from "../models/post";
 
 const router = express.Router();
 
@@ -19,7 +20,11 @@ router.post(
   async (req: Request, res: Response) => {
     const { caption, imgUrl } = req.body;
 
-    const post = Post.build({ userId: req.currentUser!.id, caption, imgUrl });
+    const post = Post.build({
+      userId: req.currentUser!.id,
+      caption,
+      imgUrl,
+    });
 
     await post.save();
 
