@@ -4,10 +4,11 @@ import {
   requireAuth,
   validateRequest,
 } from "@singhpostitapp/common";
+import mongoose from "mongoose";
 import express, { Request, Response } from "express";
+
 import { Post } from "../models/post";
 import { body } from "express-validator";
-import mongoose from "mongoose";
 
 const router = express.Router();
 
