@@ -1,7 +1,6 @@
 import mongoose from "mongoose";
 
 interface CommentAttrs {
-  //id: string;
   userId: string;
   caption: string;
   likes?: number;
