@@ -2,7 +2,6 @@ import express, { Request, Response } from "express";
 import { requireAuth } from "@singhpostitapp/common";
 
 import { Post } from "../models/post";
-import { Comment } from "../models/comment";
 
 const router = express.Router();
 
