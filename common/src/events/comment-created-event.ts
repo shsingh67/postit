@@ -7,6 +7,5 @@ export interface CommentCreatedEvent {
     userId: string;
     postId: string;
     caption: string;
-    likes: number;
   };
 }
