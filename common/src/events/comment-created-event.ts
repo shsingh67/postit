@@ -1,4 +1,4 @@
-import { Subjects } from "./subject";
+import { Subjects } from "./subjects";
 
 export interface CommentCreatedEvent {
   subject: Subjects.CommentCreated;
