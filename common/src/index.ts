@@ -15,4 +15,4 @@ export * from "./middlewares/requireAuth";
 export * from "./events/base-listener";
 export * from "./events/base-publisher";
 export * from "./events/comment-created-event";
-export * from "./events/subject";
+export * from "./events/subjects";
