@@ -7,5 +7,6 @@ export interface CommentCreatedEvent {
     userId: string;
     postId: string;
     caption: string;
+    version: number;
   };
 }
