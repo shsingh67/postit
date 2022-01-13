@@ -29,6 +29,7 @@ router.post(
       userId: comment.userId,
       postId: comment.postId,
       caption: comment.caption,
+      version: comment.version,
     });
 
     res.status(201).send(comment);
