@@ -25,14 +25,10 @@ export class CommentCreatedListener extends Listener<CommentCreatedEvent> {
     const comment = Comment.build({ id, userId, postId, caption });
     await comment.save();
 
-    let comments;
-    if (post.comments === undefined) {
-      comments = [];
-      comments.push(comment);
-      post.set({ comments });
-    } else {
-      post.comments.push(comment);
-    }
+    let comments: CommentDoc[];
+    post.comments === undefined ? (comments = []) : (comments = post.comments);
+
+    comments.push(comment);
     post.set({ comments });
     await post.save();
 
