@@ -1,6 +1,7 @@
 import { app } from "./app";
 import mongoose from "mongoose";
 import { natsWrapper } from "./nats-wrapper";
+import { CommentCreatedPublisher } from "./events/publishers/comment-created-publisher";
 
 const start = async () => {
   if (!process.env.JWT_KEY) {
